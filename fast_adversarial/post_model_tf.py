@@ -14,8 +14,8 @@ class PostModelTf():
     def predict(self, x):
         print("===========================================")
         print(type(x))
-        batch_size = tf.size(x)[0]
-        print(tf.size(x))
+        print(tf.shape(x))
+        batch_size = tf.shape(x)[0]
         print(batch_size)
 
         return tf.random.uniform(shape=[batch_size, self.num_labels])
