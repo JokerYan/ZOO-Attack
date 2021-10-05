@@ -11,8 +11,7 @@ pretrained_model_path = os.path.join('.', 'pretrained_models', 'cifar_model_weig
 
 
 def get_args():
-    parser = argparse.ArgumentParser()
-    args = parser.parse_args()
+    args = object()
     args.data_dir = '../../cifar-data'
     args.mixup = False
     args.pt_data = 'ori_neigh'
