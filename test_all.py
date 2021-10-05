@@ -14,6 +14,7 @@ import numpy as np
 import random
 import time
 
+from fast_adversarial.post_model_tf import PostModelTf
 from setup_cifar import CIFAR, CIFARModel
 from setup_mnist import MNIST, MNISTModel
 from setup_inception import ImageNet, InceptionModel
@@ -97,7 +98,9 @@ def main(args):
             data, model =  MNIST(), MNISTModel("models/mnist", sess, use_log)
             # data, model =  MNIST(), MNISTModel("models/mnist-distilled-100", sess, use_log)
         elif args['dataset'] == "cifar10":
-            data, model = CIFAR(), CIFARModel("models/cifar", sess, use_log)
+            data = CIFAR()
+            model = PostModelTf()
+            # data, model = CIFAR(), CIFARModel("models/cifar", sess, use_log)
             # data, model = CIFAR(), CIFARModel("models/cifar-distilled-100", sess, use_log)
         elif args['dataset'] == "imagenet":
             data, model = ImageNet(), InceptionModel(sess, use_log)
