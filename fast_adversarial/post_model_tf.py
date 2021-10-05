@@ -21,4 +21,4 @@ class PostModelTf():
 
         y = np.zeros([batch_size, self.num_labels], dtype=np.float32)
         print(y)
-        return y
+        return tf.convert_to_tensor(y)
