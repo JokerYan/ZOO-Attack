@@ -20,6 +20,6 @@ class PostModelTf():
         batch_size = 1
 
         # y = np.zeros([batch_size, self.num_labels], dtype=np.float32)
-        y = np.max(x, axis=1)
+        y = np.max(x.numpy(), axis=1)
         print(y.shape)
         return tf.convert_to_tensor(y)
