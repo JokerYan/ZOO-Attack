@@ -4,8 +4,8 @@ import os
 import torch
 import torch.nn as nn
 
-from preact_resnet import PreActResNet18
-from utils import get_loaders, get_train_loaders_by_class, post_train
+from .preact_resnet import PreActResNet18
+from .utils import get_loaders, get_train_loaders_by_class, post_train
 
 pretrained_model_path = os.path.join('.', 'pretrained_models', 'cifar_model_weights_30_epochs.pth')
 
