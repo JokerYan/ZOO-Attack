@@ -15,7 +15,8 @@ class PostModelTf():
     def predict(self, x):
         print("===========================================")
         print(type(x))
-        shape = x.get_shape().as_list()
+        shape = x.get_shape()
+        print(shape)
         batch_size = shape[0]
         print(int(batch_size))
 
