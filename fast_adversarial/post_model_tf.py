@@ -1,4 +1,5 @@
 import tensorflow as tf
+import numpy as np
 
 
 from .post_model import PostModel
@@ -16,6 +17,6 @@ class PostModelTf():
         print(type(x))
         print(tf.shape(x))
         batch_size = tf.shape(x)[0]
-        print(batch_size)
+        print(int(batch_size))
 
-        return tf.random.uniform(shape=[batch_size, self.num_labels])
+        return tf.convert_to_tensor(np.zeros([batch_size, self.num_labels]))
