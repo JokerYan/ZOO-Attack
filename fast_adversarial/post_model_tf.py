@@ -15,9 +15,8 @@ class PostModelTf():
     def predict(self, x):
         print("===========================================")
         print(type(x))
-        shape = x.get_shape()
-        print(shape)
-        batch_size = shape[0]
-        print(int(batch_size))
+        print(x)
+
+        batch_size = 1
 
         return tf.convert_to_tensor(np.zeros([batch_size, self.num_labels]))
