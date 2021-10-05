@@ -19,6 +19,6 @@ class PostModelTf():
 
         batch_size = 1
 
-        y = tf.convert_to_tensor(np.zeros([batch_size, self.num_labels]))
+        y = tf.convert_to_tensor(np.zeros([batch_size, self.num_labels], dtype=np.float32))
         print(y)
         return y
