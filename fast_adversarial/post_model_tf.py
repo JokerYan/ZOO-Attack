@@ -6,4 +6,5 @@ class PostModelTf():
         self.post_model = PostModel()
 
     def predict(self, x):
+        print("===========================================")
         print(type(x))
