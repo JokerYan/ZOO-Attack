@@ -11,7 +11,7 @@ pretrained_model_path = os.path.join('.', 'pretrained_models', 'cifar_model_weig
 
 class DummyArgs:
     def __init__(self):
-        self.data_dir = '../../cifar-data'
+        self.data_dir = '../cifar-data'
         self.mixup = False
         self.pt_data = 'ori_neigh'
         self.pt_method = 'adv'
