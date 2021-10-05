@@ -1,4 +1,4 @@
-from post_model import PostModel
+from .post_model import PostModel
 
 
 class PostModelTf():
