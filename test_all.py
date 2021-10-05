@@ -99,7 +99,8 @@ def main(args):
             # data, model =  MNIST(), MNISTModel("models/mnist-distilled-100", sess, use_log)
         elif args['dataset'] == "cifar10":
             data = CIFAR()
-            model = PostModelTf()
+            # model = PostModelTf()
+            data, model = CIFAR(), CIFARModel(None, sess, use_log)
             # data, model = CIFAR(), CIFARModel("models/cifar", sess, use_log)
             # data, model = CIFAR(), CIFARModel("models/cifar-distilled-100", sess, use_log)
         elif args['dataset'] == "imagenet":
