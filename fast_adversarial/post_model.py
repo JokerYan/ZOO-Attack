@@ -9,18 +9,15 @@ from .utils import get_loaders, get_train_loaders_by_class, post_train
 
 pretrained_model_path = os.path.join('.', 'pretrained_models', 'cifar_model_weights_30_epochs.pth')
 
-
-def get_args():
-    args = object()
-    args.data_dir = '../../cifar-data'
-    args.mixup = False
-    args.pt_data = 'ori_neigh'
-    args.pt_method = 'adv'
-    args.pt_iter = 50
-    args.rs_neigh = False
-    args.blackbox = False
-    return args
-
+class DummyArgs:
+    def __init__(self):
+        self.data_dir = '../../cifar-data'
+        self.mixup = False
+        self.pt_data = 'ori_neigh'
+        self.pt_method = 'adv'
+        self.pt_iter = 50
+        self.rs_neigh = False
+        self.blackbox = False
 
 class PostModel(nn.Module):
     def __init__(self, model=None, args=None):
@@ -35,7 +32,7 @@ class PostModel(nn.Module):
         self.model = model
 
         if args is None:
-            args = get_args()
+            args = DummyArgs()
         self.args = args
 
         self.train_loader, _ = get_loaders(self.args.data_dir, batch_size=128)
