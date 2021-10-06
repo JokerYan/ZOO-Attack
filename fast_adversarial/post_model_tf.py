@@ -42,4 +42,5 @@ class PostModelTf():
         # y = self.post_model.forward(x)
         print("input fed to model")
         y = y.detach().cpu().numpy()
+        input()
         return y
