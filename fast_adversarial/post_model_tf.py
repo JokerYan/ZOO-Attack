@@ -28,6 +28,8 @@ class PostModelTf():
             x = x.numpy()
 
         x = torch.from_numpy(x).cuda()
+        # B x W x H x C -> B x C x W x H
+        x = x.permute(0, 3, 1, 2)
         y = self.post_model.forward(x)
         y = y.detach().cpu().numpy()
         return y
