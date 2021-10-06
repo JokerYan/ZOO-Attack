@@ -40,7 +40,5 @@ class PostModelTf():
             y_list.append(y_batch.detach())
         y = torch.cat(y_list)
         # y = self.post_model.forward(x)
-        print("input fed to model")
         y = y.detach().cpu().numpy()
-        input()
         return y
