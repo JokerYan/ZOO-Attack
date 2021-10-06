@@ -32,7 +32,14 @@ class PostModelTf():
         print("input moved to cuda")
         # B x W x H x C -> B x C x W x H
         x = x.permute(0, 3, 1, 2)
-        y = self.post_model.forward(x)
+
+        y_list = []
+        for i in range(len(x)):
+            x_batch = x[i, :, :, :]
+            y_batch = self.post_model.forward(x_batch)
+            y_list.append(y_batch)
+        y = torch.cat(y_list)
+        # y = self.post_model.forward(x)
         print("input fed to model")
         y = y.detach().cpu().numpy()
         return y
