@@ -19,6 +19,11 @@ class PostModelTf():
 
         x = tf.reshape(x, [-1, 32 * 32 * 3])
 
-        y = tf.reduce_max(x, axis=1)
+        # y = tf.reduce_max(x, axis=1)
+        y = tf.py_function(func=self.py_predict, inp=[self, x], Tout=tf.float32)
         print(y.shape)
         return y
+
+    def py_predict(self, x):
+        dummy = np.zeros([1, 10])
+        return dummy
