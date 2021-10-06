@@ -24,5 +24,5 @@ class PostModelTf():
 
     def py_predict(self, x):
         print("==> x:", type(x))
-        dummy = np.zeros([1, 10])
+        dummy = np.random.rand(1, 10)
         return dummy
