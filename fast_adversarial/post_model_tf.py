@@ -29,8 +29,10 @@ class PostModelTf():
 
         x = x.astype(np.float32)
         x = torch.from_numpy(x).cuda()
+        print("input moved to cuda")
         # B x W x H x C -> B x C x W x H
         x = x.permute(0, 3, 1, 2)
         y = self.post_model.forward(x)
+        print("input fed to model")
         y = y.detach().cpu().numpy()
         return y
