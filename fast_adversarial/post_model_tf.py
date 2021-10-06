@@ -25,9 +25,9 @@ class PostModelTf():
     def py_predict(self, x):
         print("==> x:", type(x))
         if isinstance(x, np.ndarray):
-            print("np ndarray")
+            print("already np ndarray")
         else:
             x = x.numpy()
-            print("something else")
+        print(x.shape)
         dummy = np.random.rand(1, 10)
         return dummy
