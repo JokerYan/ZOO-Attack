@@ -35,7 +35,7 @@ class PostModelTf():
 
         y_list = []
         for i in range(len(x)):
-            x_batch = x[i, :, :, :]
+            x_batch = x[i, :, :, :].unsqueeze(0)
             y_batch = self.post_model.forward(x_batch)
             y_list.append(y_batch)
         y = torch.cat(y_list)
