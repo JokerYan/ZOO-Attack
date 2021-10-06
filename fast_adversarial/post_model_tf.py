@@ -26,9 +26,8 @@ class PostModelTf():
         print("==> x:", type(x))
         if isinstance(x, np.ndarray):
             print("np ndarray")
-        elif isinstance(x, tf.python.framework.ops.EagerTensor):
-            print("tf eager tensor")
         else:
-            print("!!!!!!!! neither class")
+            x = x.numpy()
+            print("something else")
         dummy = np.random.rand(1, 10)
         return dummy
