@@ -27,6 +27,7 @@ class PostModelTf():
         if not isinstance(x, np.ndarray):
             x = x.numpy()
 
+        x = x.astype(np.float32)
         x = torch.from_numpy(x).cuda()
         # B x W x H x C -> B x C x W x H
         x = x.permute(0, 3, 1, 2)
