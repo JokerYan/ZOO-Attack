@@ -253,8 +253,7 @@ class BlackBoxL2:
         # now we have output at #batch_size different modifiers
         # the output should have shape (batch_size, num_labels)
         self.output = model.predict(self.newimg)
-        print("~~~~", self.output)
-        
+
         # distance to the input data
         if use_tanh:
             self.l2dist = tf.reduce_sum(tf.square(self.newimg-tf.tanh(self.timg)/2), [1,2,3])

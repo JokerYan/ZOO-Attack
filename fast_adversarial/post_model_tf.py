@@ -1,5 +1,6 @@
 import tensorflow as tf
 import numpy as np
+import torch
 
 
 from .post_model import PostModel
@@ -23,11 +24,10 @@ class PostModelTf():
         return y
 
     def py_predict(self, x):
-        print("==> x:", type(x))
-        if isinstance(x, np.ndarray):
-            print("already np ndarray")
-        else:
+        if not isinstance(x, np.ndarray):
             x = x.numpy()
-        print(x.shape)
-        dummy = np.random.rand(1, 10)
-        return dummy
+
+        x = torch.from_numpy(x).cuda()
+        y = self.post_model.forward(x)
+        y = y.detach().cpu().numpy()
+        return y
