@@ -37,7 +37,7 @@ class PostModelTf():
             # B x W x H x C -> B x C x W x H
             x_batch = x_batch.permute(0, 3, 1, 2)
             y_batch = self.post_model.forward(x_batch)
-            y_list.append(y_batch)
+            y_list.append(y_batch.detach())
         y = torch.cat(y_list)
         # y = self.post_model.forward(x)
         print("input fed to model")
