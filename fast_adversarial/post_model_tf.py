@@ -24,5 +24,11 @@ class PostModelTf():
 
     def py_predict(self, x):
         print("==> x:", type(x))
+        if isinstance(x, np.ndarray):
+            print("np ndarray")
+        elif isinstance(x, tf.python.framework.ops.EagerTensor):
+            print("tf eager tensor")
+        else:
+            print("!!!!!!!! neither class")
         dummy = np.random.rand(1, 10)
         return dummy
