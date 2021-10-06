@@ -17,8 +17,7 @@ class PostModelTf():
         print(type(x))
         # print(x)
 
-        batch_size = x.get_shape().as_list()[0]
-        x = tf.reshape(x, [batch_size, -1])
+        x = tf.reshape(x, [-1, 32 * 32 * 3])
 
         y = tf.reduce_max(x, axis=1)
         print(y.shape)
