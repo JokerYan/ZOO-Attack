@@ -142,8 +142,8 @@ def main(args):
             print("true labels:", np.argmax(labels), labels)
             print("target:", np.argmax(targets), targets)
             # test if the image is correctly classified
-            original_predict = model.model.predict(inputs)
-            # original_predict = model.predict(inputs)
+            # original_predict = model.model.predict(inputs)
+            original_predict = model.predict(inputs)
             original_predict = np.squeeze(original_predict)
             original_prob = np.sort(original_predict)
             original_class = np.argsort(original_predict)
@@ -164,8 +164,8 @@ def main(args):
                 adv = adv.reshape((1,) + adv.shape)
             timeend = time.time()
             l2_distortion = np.sum((adv-inputs)**2)**.5
-            adversarial_predict = model.model.predict(adv)
-            # adversarial_predict = model.predict(adv)
+            # adversarial_predict = model.model.predict(adv)
+            adversarial_predict = model.predict(adv)
             adversarial_predict = np.squeeze(adversarial_predict)
             adversarial_prob = np.sort(adversarial_predict)
             adversarial_class = np.argsort(adversarial_predict)
