@@ -23,6 +23,6 @@ class PostModelTf():
         return y
 
     def py_predict(self, x):
-        print("==> x:", x.get_shape())
+        print("==> x:", type(x))
         dummy = np.zeros([1, 10])
         return dummy
