@@ -28,15 +28,14 @@ class PostModelTf():
             x = x.numpy()
 
         x = x.astype(np.float32)
-        x = torch.from_numpy(x).cuda()
-        print("input moved to cuda")
-        input()
-        # B x W x H x C -> B x C x W x H
-        x = x.permute(0, 3, 1, 2)
 
         y_list = []
         for i in range(len(x)):
-            x_batch = x[i, :, :, :].unsqueeze(0)
+            x_batch = x[i, :, :, :]
+            x_batch = torch.from_numpy(x_batch).cuda()
+            x_batch = x_batch.unsqueeze(0)
+            # B x W x H x C -> B x C x W x H
+            x_batch = x_batch.permute(0, 3, 1, 2)
             y_batch = self.post_model.forward(x_batch)
             y_list.append(y_batch)
         y = torch.cat(y_list)
