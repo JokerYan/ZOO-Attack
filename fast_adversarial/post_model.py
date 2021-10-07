@@ -48,7 +48,8 @@ class PostModel(nn.Module):
 
     def forward(self, images):
         images = self.transform(images)
-        # post_model, original_class, neighbour_class, loss_list, acc_list, neighbour_delta = \
-        #     post_train(self.model, images, self.train_loader, self.train_loaders_by_class, self.args)
-        # return post_model(images)
-        return self.model(images)
+        sample_images = images[0, :, :, :].unsqueeze(0)
+        post_model, original_class, neighbour_class, loss_list, acc_list, neighbour_delta = \
+            post_train(self.model, sample_images, self.train_loader, self.train_loaders_by_class, self.args)
+        return post_model(images)
+        # return self.model(images)
