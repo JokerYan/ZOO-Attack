@@ -50,11 +50,10 @@ class PostModel(nn.Module):
 
     def update_post_model(self, images):
         sample_images = images[0, :, :, :].unsqueeze(0)
+        del self.post_model
         post_model, original_class, neighbour_class, loss_list, acc_list, neighbour_delta = \
             post_train(self.model, sample_images, self.train_loader, self.train_loaders_by_class, self.args)
-        del self.post_model
         self.post_model = post_model
-
 
     def forward(self, images):
         images = self.transform(images)
