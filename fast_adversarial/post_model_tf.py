@@ -32,7 +32,7 @@ class PostModelTf():
         x = x.astype(np.float32)
 
         y_list = []
-        for i in tqdm(range(len(x))):
+        for i in range(len(x)):
             x_batch = x[i, :, :, :]
             x_batch = torch.from_numpy(x_batch).cuda()
             x_batch = x_batch.unsqueeze(0)
