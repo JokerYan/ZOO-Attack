@@ -39,6 +39,8 @@ class PostModelTf():
             # x_batch = x_batch.unsqueeze(0)
             # B x W x H x C -> B x C x W x H
             x_batch = x_batch.permute(0, 3, 1, 2)
+            if i == 0:
+                self.post_model.update_post_model(x_batch)
             y_batch = self.post_model.forward(x_batch)
             y_list.append(y_batch.detach())
         y = torch.cat(y_list)

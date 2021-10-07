@@ -46,10 +46,19 @@ class PostModel(nn.Module):
         self.train_loader, _ = get_loaders(self.args.data_dir, batch_size=128)
         self.train_loaders_by_class = get_train_loaders_by_class(self.args.data_dir, batch_size=128)
 
-    def forward(self, images):
-        images = self.transform(images)
+        self.post_model = None
+
+    def update_post_model(self, images):
         sample_images = images[0, :, :, :].unsqueeze(0)
         post_model, original_class, neighbour_class, loss_list, acc_list, neighbour_delta = \
             post_train(self.model, sample_images, self.train_loader, self.train_loaders_by_class, self.args)
-        return post_model(images)
+        self.post_model = post_model
+
+
+    def forward(self, images):
+        images = self.transform(images)
+        # sample_images = images[0, :, :, :].unsqueeze(0)
+        # post_model, original_class, neighbour_class, loss_list, acc_list, neighbour_delta = \
+        #     post_train(self.model, sample_images, self.train_loader, self.train_loaders_by_class, self.args)
+        return self.post_model(images)
         # return self.model(images)
