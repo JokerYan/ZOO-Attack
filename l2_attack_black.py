@@ -623,7 +623,7 @@ class BlackBoxL2:
                 last_loss1 = loss1
 
                 if l > prev * .9999:
-                    print("! Early Stopping Criteria Met !")
+                    print("! Early Stopping Criteria Met !", l, prev)
 
                 # check if we should abort search if we're getting nowhere.
                 # if self.ABORT_EARLY and iteration%(self.MAX_ITERATIONS//10) == 0:
