@@ -622,18 +622,19 @@ class BlackBoxL2:
                     self.stage = 1
                 last_loss1 = loss1
 
-                print("Iter: {}\tLoss: {}".format(iteration, l))
-                if l > prev * .9999:
-                    print("! Early Stopping Criteria Met !")
-                prev = l
+                # print("Iter: {}\tLoss: {}".format(iteration, l))
+                # if l > prev * .9999:
+                #     print("! Early Stopping Criteria Met !")
+                # prev = l
 
-                # # check if we should abort search if we're getting nowhere.
-                # # if self.ABORT_EARLY and iteration%(self.MAX_ITERATIONS//10) == 0:
-                # if self.ABORT_EARLY and iteration % self.early_stop_iters == 0:
-                #     if l > prev*.9999:
-                #         print("Early stopping because there is no improvement")
-                #         break
-                #     prev = l
+                print("Iter: {}\tLoss: {}".format(iteration, l))
+                # check if we should abort search if we're getting nowhere.
+                # if self.ABORT_EARLY and iteration%(self.MAX_ITERATIONS//10) == 0:
+                if self.ABORT_EARLY and iteration % self.early_stop_iters == 0:
+                    if l > prev*.9999:
+                        print("Early stopping because there is no improvement")
+                        break
+                    prev = l
 
                 # adjust the best result found so far
                 # the best attack should have the target class with the largest value,
