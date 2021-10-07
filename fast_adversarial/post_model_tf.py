@@ -32,7 +32,7 @@ class PostModelTf():
         x = x.astype(np.float32)
 
         y_list = []
-        batch_size = 64
+        batch_size = 32
         for i in range(0, len(x), batch_size):
             x_batch = x[i:i+batch_size, :, :, :]
             x_batch = torch.from_numpy(x_batch).cuda()
