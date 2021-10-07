@@ -50,6 +50,7 @@ class PostModel(nn.Module):
 
     def update_post_model(self, images):
         sample_images = images[0, :, :, :].unsqueeze(0)
+        sample_images = self.transform(sample_images)
         del self.post_model
         post_model, original_class, neighbour_class, loss_list, acc_list, neighbour_delta = \
             post_train(self.model, sample_images, self.train_loader, self.train_loaders_by_class, self.args)
