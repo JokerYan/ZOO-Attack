@@ -1,1 +1,1 @@
-python3 test_all.py -a black -d cifar10 -n 200 --solver adam -b 1 -s "black_results" --early_stop_iters 20 --init_const 5
+CUDA_VISIBLE_DEVICES=0 python3 test_all.py -a black -d cifar10 -n 200 --solver adam -b 1 -s "black_results" --early_stop_iters 20 --init_const 5
