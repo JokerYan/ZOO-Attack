@@ -624,14 +624,15 @@ class BlackBoxL2:
 
                 if l > prev * .9999:
                     print("! Early Stopping Criteria Met !", l, prev)
+                prev = l
 
-                # check if we should abort search if we're getting nowhere.
-                # if self.ABORT_EARLY and iteration%(self.MAX_ITERATIONS//10) == 0:
-                if self.ABORT_EARLY and iteration % self.early_stop_iters == 0:
-                    if l > prev*.9999:
-                        print("Early stopping because there is no improvement")
-                        break
-                    prev = l
+                # # check if we should abort search if we're getting nowhere.
+                # # if self.ABORT_EARLY and iteration%(self.MAX_ITERATIONS//10) == 0:
+                # if self.ABORT_EARLY and iteration % self.early_stop_iters == 0:
+                #     if l > prev*.9999:
+                #         print("Early stopping because there is no improvement")
+                #         break
+                #     prev = l
 
                 # adjust the best result found so far
                 # the best attack should have the target class with the largest value,
