@@ -52,6 +52,7 @@ class PostModel(nn.Module):
         sample_images = images[0, :, :, :].unsqueeze(0)
         post_model, original_class, neighbour_class, loss_list, acc_list, neighbour_delta = \
             post_train(self.model, sample_images, self.train_loader, self.train_loaders_by_class, self.args)
+        del self.post_model
         self.post_model = post_model
 
 
