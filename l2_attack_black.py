@@ -622,8 +622,9 @@ class BlackBoxL2:
                     self.stage = 1
                 last_loss1 = loss1
 
+                print("Iter: {}\tLoss: {}".format(iteration, l))
                 if l > prev * .9999:
-                    print("! Early Stopping Criteria Met !", l, prev)
+                    print("! Early Stopping Criteria Met !")
                 prev = l
 
                 # # check if we should abort search if we're getting nowhere.
