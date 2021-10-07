@@ -32,10 +32,11 @@ class PostModelTf():
         x = x.astype(np.float32)
 
         y_list = []
-        for i in range(len(x)):
-            x_batch = x[i, :, :, :]
+        batch_size = 32
+        for i in range(0, len(x), batch_size):
+            x_batch = x[i:i+batch_size, :, :, :]
             x_batch = torch.from_numpy(x_batch).cuda()
-            x_batch = x_batch.unsqueeze(0)
+            # x_batch = x_batch.unsqueeze(0)
             # B x W x H x C -> B x C x W x H
             x_batch = x_batch.permute(0, 3, 1, 2)
             y_batch = self.post_model.forward(x_batch)
