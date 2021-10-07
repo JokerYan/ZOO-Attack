@@ -3,11 +3,16 @@ import os
 
 import torch
 import torch.nn as nn
+from torchvision import transforms
 
 from .preact_resnet import PreActResNet18
 from .utils import get_loaders, get_train_loaders_by_class, post_train
 
 pretrained_model_path = os.path.join('.', 'pretrained_models', 'cifar_model_weights_30_epochs.pth')
+
+cifar10_mean = (0.4914, 0.4822, 0.4465)
+cifar10_std = (0.2471, 0.2435, 0.2616)
+
 
 class DummyArgs:
     def __init__(self):
@@ -30,6 +35,9 @@ class PostModel(nn.Module):
             model.float()
             model.eval()
         self.model = model
+        self.transform = transforms.Compose([
+            transforms.Normalize(cifar10_mean, cifar10_std)
+        ])
 
         if args is None:
             args = DummyArgs()
@@ -39,6 +47,7 @@ class PostModel(nn.Module):
         self.train_loaders_by_class = get_train_loaders_by_class(self.args.data_dir, batch_size=128)
 
     def forward(self, images):
+        images = self.transform(images)
         # post_model, original_class, neighbour_class, loss_list, acc_list, neighbour_delta = \
         #     post_train(self.model, images, self.train_loader, self.train_loaders_by_class, self.args)
         # return post_model(images)
